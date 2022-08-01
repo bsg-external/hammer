@@ -197,9 +197,13 @@ class Netgen(HammerLVSTool, TCLTool):
         self.append('puts "Reading schematics..."')
         library_spice_files = self.technology.read_libs([hammer_tech.filters.spice_filter], hammer_tech.HammerTechnologyUtils.to_plain_item)
         ilms = list(map(lambda x: x.netlist, self.ilms))  # type: List[str]
-        for sch in self.schematic_files + ilms + library_spice_files:
+        # Read standard cells
+        for sch in self.schematic_files:
             self.append('puts "Reading {}..."'.format(sch))
             self.append("readnet {} 2".format(sch))
+        for sch in ilms + library_spice_files:
+            self.append('puts "Reading cell library {}..."'.format(sch))
+            self.append("readlib spice {}".format(sch))
 
         self.append(self.get_additional_lvs_text())
 
