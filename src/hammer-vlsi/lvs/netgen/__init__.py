@@ -195,7 +195,7 @@ class Netgen(HammerLVSTool, TCLTool):
 
         # libs for circuit2. auto format detection (somewhat dangerous).
         self.append('puts "Reading schematics..."')
-        library_spice_files = self.technology.read_libs([hammer_tech.filters.spice_filter], hammer_tech.HammerTechnologyUtils.to_plain_item)
+        library_spice_files = self.technology.read_libs([hammer_tech.filters.spice_filter], hammer_tech.HammerTechnologyUtils.to_plain_item, must_exist=False)
         ilms = list(map(lambda x: x.netlist, self.ilms))  # type: List[str]
         # Read standard cells
         for sch in self.schematic_files:
