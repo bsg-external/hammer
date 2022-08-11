@@ -94,6 +94,8 @@ def build_makefile(driver: HammerDriver, append_error_func: Callable[[str], None
         - HAMMER_EXTRA_ARGS: This is passed to the Hammer executable for all targets. This is unset by default.
           Its primary uses are for adding additional configuration files with -p, --to_step/until_step, and/or --from_step/
           after_step options. An example use is "make redo-par-Top HAMMER_EXTRA_ARGS="-p patch.yaml --from_step placement".
+        - SIM_EXTRA_ARGS: This is passed to the Hammer executable for sim-syn and sim-par targets. Intended to be used to 
+          add extra source/testbench files specific to those simulations.
 
     :param driver: The HammerDriver
     :return: The dependency graph
@@ -172,7 +174,7 @@ def build_makefile(driver: HammerDriver, append_error_func: Callable[[str], None
         \t$(HAMMER_EXEC) {env_confs} -p {syn_out} $(HAMMER_EXTRA_ARGS) -o {sim_syn_in} --obj_dir {obj_dir} syn-to-sim
 
         {sim_syn_out}: {sim_syn_in} $(HAMMER_SIM_SYN_DEPENDENCIES)
-        \t$(HAMMER_EXEC) {env_confs} -p {sim_syn_in} $(HAMMER_EXTRA_ARGS) --sim_rundir {sim_syn_run_dir} --obj_dir {obj_dir} sim{suffix}
+        \t$(HAMMER_EXEC) {env_confs} -p {sim_syn_in} $(SIM_EXTRA_ARGS) $(HAMMER_EXTRA_ARGS) --sim_rundir {sim_syn_run_dir} --obj_dir {obj_dir} sim{suffix}
 
         {par_in}: {syn_out}
         \t$(HAMMER_EXEC) {env_confs} -p {syn_out} $(HAMMER_EXTRA_ARGS) -o {par_in} --obj_dir {obj_dir} syn-to-par
@@ -184,7 +186,7 @@ def build_makefile(driver: HammerDriver, append_error_func: Callable[[str], None
         \t$(HAMMER_EXEC) {env_confs} -p {par_out} $(HAMMER_EXTRA_ARGS) -o {sim_par_in} --obj_dir {obj_dir} par-to-sim
 
         {sim_par_out}: {sim_par_in} $(HAMMER_SIM_PAR_DEPENDENCIES)
-        \t$(HAMMER_EXEC) {env_confs} -p {sim_par_in} $(HAMMER_EXTRA_ARGS) --sim_rundir {sim_par_run_dir} --obj_dir {obj_dir} sim{suffix}
+        \t$(HAMMER_EXEC) {env_confs} -p {sim_par_in} $(SIM_EXTRA_ARGS) $(HAMMER_EXTRA_ARGS) --sim_rundir {sim_par_run_dir} --obj_dir {obj_dir} sim{suffix}
 
         {power_sim_par_in}: {sim_par_out}
         \t$(HAMMER_EXEC) {env_confs} -p {sim_par_out} $(HAMMER_EXTRA_ARGS) -o {power_sim_par_in} --obj_dir {obj_dir} sim-to-power
@@ -235,7 +237,7 @@ def build_makefile(driver: HammerDriver, append_error_func: Callable[[str], None
         \t$(HAMMER_EXEC) {env_confs} -p {syn_out} $(HAMMER_EXTRA_ARGS) -o {sim_syn_in} --obj_dir {obj_dir} syn-to-sim
 
         redo-sim-syn{suffix}:
-        \t$(HAMMER_EXEC) {env_confs} -p {sim_syn_in} $(HAMMER_EXTRA_ARGS) --sim_rundir {sim_syn_run_dir} --obj_dir {obj_dir} sim{suffix}
+        \t$(HAMMER_EXEC) {env_confs} -p {sim_syn_in} $(SIM_EXTRA_ARGS) $(HAMMER_EXTRA_ARGS) --sim_rundir {sim_syn_run_dir} --obj_dir {obj_dir} sim{suffix}
 
         redo-syn-to-par{suffix}:
         \t$(HAMMER_EXEC) {env_confs} -p {syn_out} $(HAMMER_EXTRA_ARGS) -o {par_in} --obj_dir {obj_dir} syn-to-par
@@ -247,7 +249,7 @@ def build_makefile(driver: HammerDriver, append_error_func: Callable[[str], None
         \t$(HAMMER_EXEC) {env_confs} -p {par_out} $(HAMMER_EXTRA_ARGS) -o {sim_par_in} --obj_dir {obj_dir} par-to-sim
 
         redo-sim-par{suffix}:
-        \t$(HAMMER_EXEC) {env_confs} -p {sim_par_in} $(HAMMER_EXTRA_ARGS) --sim_rundir {sim_par_run_dir} --obj_dir {obj_dir} sim{suffix}
+        \t$(HAMMER_EXEC) {env_confs} -p {sim_par_in} $(SIM_EXTRA_ARGS) $(HAMMER_EXTRA_ARGS) --sim_rundir {sim_par_run_dir} --obj_dir {obj_dir} sim{suffix}
 
         redo-sim-par-to-power{suffix}:
         \t$(HAMMER_EXEC) {env_confs} -p {sim_par_out} $(HAMMER_EXTRA_ARGS) -o {power_sim_par_in} --obj_dir {obj_dir} sim-to-power
