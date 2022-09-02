@@ -862,6 +862,10 @@ class HammerDriver:
                 "sim.inputs.level": 'gl',
                 "vlsi.builtins.is_complete": False
             }  # type: Dict[str, Any]
+            try: 
+                post_syn_timing = output_dict["sim.inputs.post_syn_timing_annotated"]
+                result["sim.inputs.timing_annotated"] = post_syn_timing
+            except: pass
             return result
         except KeyError:
             # KeyError means that the given dictionary is missing output keys.
