@@ -148,6 +148,11 @@ class Netgen(HammerLVSTool, TCLTool):
         os.makedirs(os.path.join(self.run_dir, "ext2spice-rundir"), exist_ok=True)
 
         # ext2spice script
+        lef_files = self.technology.read_libs([hammer_tech.filters.lef_filter], hammer_tech.HammerTechnologyUtils.to_plain_item)
+        self.append('# Read LEFs')
+        for f in lef_files:
+            self.append(f'lef read {f}')
+        self.append("# Read GDS")
         self.append("gds read " + self.layout_file)
         self.append("load " + self.top_module)
         self.append("cd ext2spice-rundir")

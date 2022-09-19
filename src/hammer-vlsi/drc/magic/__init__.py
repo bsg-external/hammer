@@ -13,6 +13,7 @@ from hammer_logging import HammerVLSILogging
 from hammer_utils import deepdict
 from hammer_vlsi import HammerToolStep
 from hammer_vlsi import HammerDRCTool, TCLTool
+import hammer_tech
 
 class Magic(HammerDRCTool, TCLTool):
 
@@ -132,6 +133,11 @@ class Magic(HammerDRCTool, TCLTool):
     #========================================================================
     def init_design(self) -> bool:
         """Read design and set up results outputs"""
+        lef_files = self.technology.read_libs([hammer_tech.filters.lef_filter], hammer_tech.HammerTechnologyUtils.to_plain_item)
+        self.append('# Read LEFs')
+        for f in lef_files:
+            self.append(f'lef read {f}')
+        self.append("# Read GDS")
         self.append("gds read " + self.layout_file)
         self.append("load " + self.top_module)
         self.append("select top cell")
