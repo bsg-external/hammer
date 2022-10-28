@@ -397,7 +397,61 @@
           "vt": "RVT"
         }
       ]
+    },
+    
+    
+    {
+      "nldm liberty file": "$SKY130A/libs.ref/sky130_fd_io/lib/sky130_ef_io__gpiov2_pad_wrapped_tt_tt_025C_1v80_3v30.lib",
+      "verilog sim": "$SKY130A/libs.ref/sky130_fd_io/verilog/sky130_ef_io.v",
+      "lef file":    "$SKY130A/libs.ref/sky130_fd_io/lef/sky130_ef_io.lef",
+      "gds file":    "$SKY130A/libs.ref/sky130_fd_io/gds/sky130_ef_io.gds",
+      "corner": {
+        "nmos": "typical",
+        "pmos": "typical",
+        "temperature": "025 C"
+      },
+      "supplies": {"VDD": "1.80 V","GND": "0 V"},
+      "provides": [{"lib_type": "stdcell", "vt": "RVT"}]
+    },
+    {
+      "nldm liberty file": "$SKY130A/libs.ref/sky130_fd_io/lib/sky130_ef_io__gpiov2_pad_wrapped_ff_ff_n40C_1v95_5v50.lib",
+      "verilog sim": "$SKY130A/libs.ref/sky130_fd_io/verilog/sky130_ef_io.v",
+      "lef file":    "$SKY130A/libs.ref/sky130_fd_io/lef/sky130_ef_io.lef",
+      "gds file":    "$SKY130A/libs.ref/sky130_fd_io/gds/sky130_ef_io.gds",
+      "corner": {
+        "nmos": "fast",
+        "pmos": "fast",
+        "temperature": "-40 C"
+      },
+      "supplies": {"VDD": "1.95 V","GND": "0 V"},
+      "provides": [{"lib_type": "stdcell", "vt": "RVT"}]
+    },
+    {
+      "nldm liberty file": "$SKY130A/libs.ref/sky130_fd_io/lib/sky130_ef_io__gpiov2_pad_wrapped_ss_ss_100C_1v60_3v00.lib",
+      "verilog sim": "$SKY130A/libs.ref/sky130_fd_io/verilog/sky130_ef_io.v",
+      "lef file":    "$SKY130A/libs.ref/sky130_fd_io/lef/sky130_ef_io.lef",
+      "gds file":    "$SKY130A/libs.ref/sky130_fd_io/gds/sky130_ef_io.gds",
+      "corner": {
+        "nmos": "slow",
+        "pmos": "slow",
+        "temperature": "100 C"
+      },
+      "supplies": {"VDD": "1.60 V","GND": "0 V"},
+      "provides": [{"lib_type": "stdcell", "vt": "RVT"}]
+    },
+    {
+      "verilog sim": "$SKY130A/libs.ref/sky130_fd_io/verilog/sky130_fd_io.v",
+      "lef file":    "$SKY130A/libs.ref/sky130_fd_io/lef/sky130_fd_io.lef",
+      "gds file":    "$SKY130A/libs.ref/sky130_fd_io/gds/sky130_fd_io.gds",
+      "provides": [{"lib_type": "stdcell", "vt": "RVT"}]
+    },
+    {
+      "lef file":    "tech-sky130-cache/sky130_ef_io_site.lef",
+      "gds file":    "$SKY130A/libs.ref/sky130_fd_io/gds/sky130_ef_io__gpiov2_pad_wrapped.gds",
+      "provides": [{"lib_type": "stdcell", "vt": "RVT"}]
     }
+
+
   ],
   "physical only cells list": [
     "sky130_fd_sc_hd__tap_1",
