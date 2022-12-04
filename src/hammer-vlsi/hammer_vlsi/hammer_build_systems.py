@@ -218,7 +218,7 @@ def build_makefile(driver: HammerDriver, append_error_func: Callable[[str], None
         {formal_par_in}: {par_out}
         \t$(HAMMER_EXEC) {env_confs} -p {par_out} $(HAMMER_EXTRA_ARGS) -o {formal_par_in} --obj_dir {obj_dir} par-to-formal
 
-        {formal_par_out}: {formal_syn_in} $(HAMMER_FORMAL_PAR_DEPENDENCIES)
+        {formal_par_out}: {formal_par_in} $(HAMMER_FORMAL_PAR_DEPENDENCIES)
         \t$(HAMMER_EXEC) {env_confs} -p {formal_par_in} $(HAMMER_EXTRA_ARGS) --formal_rundir {formal_par_run_dir} --obj_dir {obj_dir} formal{suffix}
 
         # Redo steps
