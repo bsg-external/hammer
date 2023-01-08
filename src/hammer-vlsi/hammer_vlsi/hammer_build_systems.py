@@ -239,7 +239,7 @@ def build_makefile(driver: HammerDriver, append_error_func: Callable[[str], None
         {timing_par_in}: {par_out}
         \t$(HAMMER_EXEC) {env_confs} -p {par_out} $(HAMMER_EXTRA_ARGS) -o {timing_par_in} --obj_dir {obj_dir} par-to-timing
 
-        {timing_par_out}: {timing_syn_in} $(HAMMER_TIMING_PAR_DEPENDENCIES)
+        {timing_par_out}: {timing_par_in} $(HAMMER_TIMING_PAR_DEPENDENCIES)
         \t$(HAMMER_EXEC) {env_confs} -p {timing_par_in} $(HAMMER_EXTRA_ARGS) --timing_rundir {timing_par_run_dir} --obj_dir {obj_dir} timing{suffix}
 
         # Redo steps
