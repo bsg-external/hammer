@@ -699,6 +699,7 @@ class HammerDriver:
             self.database.get_setting("vlsi.inputs.hierarchical.mode"))
         timing_tool.top_module = self.database.get_setting("timing.inputs.top_module")
         timing_tool.post_synth_sdc = self.database.get_setting("timing.inputs.post_synth_sdc", nullvalue="")
+        timing_tool.spefs = self.database.get_setting("timing.inputs.spefs", nullvalue=[])
         missing_inputs = False
         if len(timing_tool.input_files) == 0:
             self.log.error("No input files specified for timing")
