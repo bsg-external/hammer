@@ -100,6 +100,8 @@ par.inputs:
   gds_map_mode: manual
   gds_map_file: "${vlsi.builtins.hammer_vlsi_path}/technology/sky130/extra/sky130_lefpin.map"
   gds_map_file_meta: lazysubst
+  cap_table_file: "${vlsi.builtins.hammer_vlsi_path}/technology/sky130/extra/sky130.captbl"
+  cap_table_file_meta: lazysubst
   openrcx_techfile: "${vlsi.builtins.hammer_vlsi_path}/technology/sky130/extra/sky130hd.rcx_rules"
   openrcx_techfile_meta: lazysubst
   klayout_techfile_source: "${technology.sky130.sky130A}/libs.tech/klayout/sky130A.lyt"
