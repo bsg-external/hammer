@@ -1088,7 +1088,7 @@ class HammerDriver:
                 "timing.inputs.top_module": output_dict["par.inputs.top_module"],
                 "timing.inputs.post_synth_sdc": output_dict["par.outputs.sdc_file"],
                 "timing.inputs.spefs": output_dict["par.outputs.spefs"],
-                "timing.inputs.sdf_file": output_dict["par.outputs.sdf_file"],
+                "timing.inputs.sdf_file": output_dict["synthesis.outputs.sdc"],
                 "timing.inputs.ilms": output_dict["par.outputs.output_ilms"],
                 "vlsi.builtins.is_complete": False
             }  # type: Dict[str, Any]
